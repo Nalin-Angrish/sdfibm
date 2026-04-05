@@ -214,7 +214,7 @@ SolidCloud::SolidCloud(const Foam::word& dictfile, Foam::volVectorField& U, scal
     , m_Fs(const_cast<Foam::volVectorField&>(m_mesh.lookupObject<Foam::volVectorField>("Fs")))
     , m_Ts(const_cast<Foam::volScalarField&>(m_mesh.lookupObject<Foam::volScalarField>("Ts")))
     , m_geotools(GeometricTools(m_mesh))
-    , m_ms(new Foam::meshSearch(m_mesh))
+    , m_ms(&Foam::meshSearch::New(m_mesh))
 {
     m_time = time;
     m_timeStepCounter = 0;
@@ -341,7 +341,7 @@ void SolidCloud::writeMeanField()
 template <class Type>
 Type SolidCloud::calcMeanField(Solid& solid,
                                IShape* shape,
-                               const Foam::GeometricField<Type, Foam::fvPatchField, Foam::volMesh>& field)
+                               const Foam::GeometricField<Type, Foam::volMesh, Foam::Field>& field)
 {
     Solid tmpSolid = solid;
     tmpSolid.setShape(shape);

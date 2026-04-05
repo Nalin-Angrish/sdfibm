@@ -68,7 +68,7 @@ private:
     Foam::volScalarField& m_Ts;
 
     GeometricTools m_geotools;
-    std::unique_ptr<Foam::meshSearch> m_ms;
+    const Foam::meshSearch* m_ms;
 
     std::map<std::string, IMotion*  > m_libmotion;
     std::map<std::string, IMaterial*> m_libmat;
@@ -84,7 +84,7 @@ private:
     void solidFluidInteract(Solid& s, scalar dt);
     void solidFluidCorrect (Solid& s, scalar dt);
     template<class Type>
-    Type calcMeanField(Solid& s, IShape* shape, const Foam::GeometricField<Type, Foam::fvPatchField, Foam::volMesh>& field);
+    Type calcMeanField(Solid& s, IShape* shape, const Foam::GeometricField<Type, Foam::volMesh, Foam::Field>& field);
 
     void sanityCheck() const;
 public:
