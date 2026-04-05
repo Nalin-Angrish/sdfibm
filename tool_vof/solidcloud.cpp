@@ -16,7 +16,7 @@ SolidCloud::SolidCloud(const Foam::word& dictfile, const Foam::fvMesh& mesh):
 {
     if(Foam::Pstream::master())
     {
-        logfile.open("cloud.log");
+        logfile.open("log.cloud");
         logfile << GenBanner("INIT SOLIDCLOUD");
     }
     m_solids.reserve(10);
