@@ -48,3 +48,5 @@ REGISTERMOTION(MotionRotor);
 #include "motionopenclose.h"
 REGISTERMOTION(MotionOpenClose);
 
+#include "motionflapping.h"
+REGISTERMOTION(MotionFlapping);
